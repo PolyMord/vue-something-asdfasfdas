@@ -1,0 +1,97 @@
+:root {
+  --background: white;
+  --surface: black;
+  --primary: red;
+  --secondary: green;
+  --tertiary: grey;
+}
+
+.header {
+  padding: 10px 2vw;
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--surface);
+  background-color: var(--tertiary);
+}
+
+.login {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.login__logo img {
+  display: flex;
+  border-radius: 50%;
+  border: thin solid var(--surface);
+  cursor: pointer;
+}
+.login__signIn {
+  margin: 0 10px;
+  height: 25px;
+  border: thin solid var(--surface);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  transition: background 100ms ease-in;
+}
+.login__signIn:hover {
+  background-color: var(--background);
+}
+.login__link {
+  height: 100%;
+  display: block;
+  line-height: 25px;
+  color: var(--surface);
+  text-decoration: none;
+}
+
+.nav {
+  height: 100%;
+  width: 40vw;
+  max-width: 400px;
+  background-color: var(--background);
+  border: thin solid var(--surface);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.nav a {
+  font-weight: bold;
+  color: var(--primary);
+  text-decoration: none;
+}
+.nav .router-link-exact-active {
+  color: var(--secondary);
+  text-decoration: underline;
+}
+.nav a:not(:last-child) {
+  margin-right: 10px;
+}
+
+.theme {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.theme__button {
+  margin: 0 10px;
+  height: 25px;
+  border: thin solid var(--surface);
+  border-radius: 5px;
+  background-color: inherit;
+  transition: background 100ms ease-in;
+  cursor: pointer;
+}
+.theme__button:hover {
+  background-color: var(--background);
+}
+.theme__button:focus {
+  outline: none;
+}
+.theme__img img {
+  display: flex;
+  border-radius: 50%;
+}

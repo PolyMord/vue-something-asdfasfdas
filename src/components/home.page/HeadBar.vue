@@ -1,5 +1,5 @@
 <template>
-  <div>This is a HeadBar</div>
+  <div class="home__head">sdfs</div>
 </template>
 
 <script>

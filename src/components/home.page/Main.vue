@@ -1,7 +1,9 @@
 <template>
-  <div>This is a Main</div>
+  <div class="home__main">sdf</div>
 </template>
 
 <script>
-export default {}
+export default {
+  
+}
 </script>

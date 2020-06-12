@@ -1,5 +1,5 @@
 <template>
-  <div>This is a FootBar</div>
+  <div class="home__foot">sdfds</div>
 </template>
 
 <script>

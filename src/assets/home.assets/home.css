@@ -1,0 +1,75 @@
+:root {
+  --background: white;
+  --surface: black;
+  --primary: red;
+  --secondary: green;
+  --tertiary: grey;
+}
+
+.home {
+  display: flex;
+  height: calc(100vh - 62px);
+  box-sizing: border-box;
+  position: relative;
+}
+.home__button {
+  position: fixed;
+  top: 62px;
+  right: 0;
+  width: 30px;
+  height: 30px;
+  border: none;
+  background-color: var(--surface);
+  color: var(--background);
+  outline: none;
+  z-index: 10;
+}
+.home__main-section {
+  border: thin solid var(--surface);
+  margin-top: 20px;
+  margin-right: 50px;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  transition: margin-right 500ms;
+}
+.home__main-section--open {
+  margin-right: 270px;
+  transition: margin-right 500ms;
+}
+.home__head {
+  border: thin solid var(--surface);
+  height: 100px;
+}
+.home__main {
+  border: thin solid var(--surface);
+  flex-grow: 1;
+}
+.home__foot {
+  border: thin solid var(--surface);
+  height: 100px;
+}
+.home__sidebar {
+  border-left: thin solid var(--surface);
+  position: fixed;
+  width: 250px;
+  right: -220px;
+  top: 62px;
+  bottom: 0;
+  background-color: var(--primary);
+  transition: right 500ms;
+}
+.home__sidebar > .sidebar__content {
+  opacity: 0;
+  transition: opacity 500ms;
+}
+.home__sidebar--open {
+  right: 0;
+  transition: right 500ms;
+}
+.home__sidebar--open > .sidebar__content {
+  opacity: 1;
+  transition: opacity 500ms;
+}

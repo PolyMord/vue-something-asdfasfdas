@@ -1,25 +1,22 @@
 <template>
   <div class="home">
-    <h1>This is a home page</h1>
-    <div class="head">
+    <div
+      :class="sideIsOpen ? 'home__main-section--open' : ''"
+      class="home__main-section"
+    >
       <HeadBar />
-    </div>
-    <div class="main">
       <Main />
-    </div>
-    <div class="menu">
-      <Menu />
-    </div>
-    <div class="foot">
       <FootBar />
     </div>
+    <Sidebar />
+    <button @click.prevent="openSide" class="home__button">@</button>
   </div>
 </template>
 
 <script>
 import HeadBar from "@/components/home.page/HeadBar.vue"
 import Main from "@/components/home.page/Main.vue"
-import Menu from "@/components/home.page/Menu.vue"
+import Sidebar from "@/components/home.page/Sidebar.vue"
 import FootBar from "@/components/home.page/FootBar.vue"
 
 export default {
@@ -27,8 +24,24 @@ export default {
   components: {
     HeadBar,
     Main,
-    Menu,
+    Sidebar,
     FootBar,
+  },
+
+  computed: {
+    sideIsOpen() {
+      return this.$store.state.sideIsOpen
+    },
+  },
+
+  methods: {
+    openSide() {
+      return this.$store.commit("openSide")
+    },
   },
 }
 </script>
+
+<style>
+@import "../assets/home.assets/home.css";
+</style>
