@@ -1,5 +1,5 @@
 <template>
-  <div class="home__foot">sdfds</div>
+  <div class="home__foot">This is a footer</div>
 </template>
 
 <script>

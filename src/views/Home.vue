@@ -39,6 +39,9 @@ export default {
       return this.$store.commit("openSide")
     },
   },
+  mounted() {
+    // setInterval(() => this.openSide(), 1000)
+  }
 }
 </script>
 
