@@ -6,7 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     sideIsOpen: false,
-    cards: []
+    cards: JSON.parse(localStorage.getItem('cards') || '[]')
   },
   mutations: {
     openSide(state) {
@@ -49,7 +49,8 @@ export default new Vuex.Store({
 
         cards.push(obj)
       }
-      return state.cards = cards
+      state.cards = cards
+      localStorage.setItem('cards', JSON.stringify(state.cards))
     },
 
     filterCards(state, input) {
@@ -64,6 +65,7 @@ export default new Vuex.Store({
 
       if (card) {
         state.cards = [card]
+        localStorage.setItem('cards', JSON.stringify(state.cards))
       } else {
         console.log('Nothing here')
       }
