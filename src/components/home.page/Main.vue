@@ -1,8 +1,28 @@
 <template>
   <div class="home__main">
+    <div class="home__card">
+      <div class="home__image">
+        <iframe
+          src="https://www.youtube.com/embed/W8x4m-qpmJ8?t=90"
+          frameborder="0"
+          allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </div>
+      <div class="home__content">
+        <p>
+          真情像草原广阔 层层风雨不能阻隔 总有云开 日出时候 万丈阳光照亮你我
+          真情像梅花开遍 冷冷冰雪不能掩没 就在最冷 枝头绽放 看见春天走向你我
+          雪花飘飘北风啸啸 天地一片苍茫
+        </p>
+      </div>
+      <div class="home__action">
+        <a href="#">Xue Hua Piao</a>
+      </div>
+    </div>
     <div class="home__card" v-for="c of cards" :key="c.id">
       <div class="home__image">
-        <img src="images/sample-1.jpg" />
+        <img :src="cardImgOne" />
       </div>
       <div class="home__content">
         <p>
@@ -19,71 +39,17 @@
 </template>
 
 <script>
+import cardImgOne from "@/assets/home.assets/card_img_one.png"
+
 export default {
   data: () => ({
-    // cards: [
-    //   { id: 0, title: "one", img: cardImg_one },
-    //   { id: 1, title: "two", img: cardImg_two },
-    //   { id: 2, title: "three", img: cardImg_three },
-    //   { id: 3, title: "four", img: cardImg_four },
-    //   { id: 4, title: "five", img: cardImg_five },
-    //   { id: 5, title: "six", img: cardImg_six },
-    //   { id: 6, title: "seven", img: cardImg_seven },
-    //   { id: 7, title: "eight", img: cardImg_eight },
-    //   { id: 8, title: "nine", img: cardImg_nine },
-    //   { id: 9, title: "ten", img: cardImg_ten },
-    //   { id: 10, title: "eleven", img: cardImg_eleven },
-    //   { id: 11, title: "twelve", img: cardImg_twelve },
-    //   { id: 12, title: "thirteen", img: cardImg_thirteen },
-    //   { id: 13, title: "fourteen", img: cardImg_fourteen },
-    //   { id: 14, title: "fifteen", img: cardImg_fifteen },
-    //   { id: 15, title: "sixteen", img: cardImg_sixteen },
-    // ],
-    cards: [],
+    cardImgOne,
   }),
-  methods: {
-    createCards(count) {
-      if (count > 20) count = 20
-      if (count < 0) count = 0
 
-      const countWords = [
-        "one",
-        "two",
-        "three",
-        "four",
-        "five",
-        "six",
-        "seven",
-        "eight",
-        "nine",
-        "ten",
-        "eleven",
-        "twelve",
-        "thirteen",
-        "fourteen",
-        "fifteen",
-        "sixteen",
-        "seventeen",
-        "eighteen",
-        "nineteen",
-        "twenty",
-      ]
-
-      const cards = []
-      for (let i = 0; i < count; i++) {
-        const obj = {
-          id: i,
-          title: countWords[i],
-          img: `cardImg__${countWords[i]}`,
-        }
-
-        cards.push(obj)
-      }
-      return (this.cards = cards)
+  computed: {
+    cards() {
+      return this.$store.state.cards
     },
-  },
-  mounted() {
-    this.createCards(20)
   },
 }
 </script>
