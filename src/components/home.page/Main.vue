@@ -39,6 +39,7 @@
 </template>
 
 <script>
+import { mapState } from "vuex"
 import cardImgOne from "@/assets/home.assets/card_img_one.png"
 
 export default {
@@ -47,9 +48,9 @@ export default {
   }),
 
   computed: {
-    cards() {
-      return this.$store.state.cards
-    },
+    ...mapState({
+      cards: state => state.home.cards,
+    }),
   },
 }
 </script>
