@@ -102,18 +102,6 @@
   padding: 0;
   font-size: .7rem;
 }
-.fillters__btnOne {
-}
-.fillters__btnTwo {
-}
-.fillters__btnThree {
-}
-.fillters__btnFour {
-}
-.fillters__btnFive {
-}
-.fillters__btnSix {
-}
 
 .home__buttons {
   flex-basis: 20%;
@@ -128,14 +116,6 @@
   height: 30px;
   width: 30px;
   outline: none;
-}
-.buttons__btnOne {
-}
-.buttons__btnTwo {
-}
-.buttons__btnThree {
-}
-.buttons__btnFour {
 }
 
 .home__main {
@@ -235,4 +215,43 @@
 .home__sidebar--open .sidebar__content {
   opacity: 1;
   transition: opacity 500ms;
+}
+
+.profile {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, .8);
+  transition: right 500ms;
+}
+.profile--sideOpen {
+  right: 250px;
+}
+.profile--closed {
+  display: none;
+}
+.profile__container {
+  padding: 20px;
+  border: thick solid var(--surface);
+  border-radius: 15px;
+  background-color: var(--background);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.profile__button {
+  margin-top: 10px;
+}
+.profile__form {
+  display: flex;
+  flex-direction: column;
+}
+.profile__input-one,
+.profile__input-two {
+  margin-top: 10px;
 }

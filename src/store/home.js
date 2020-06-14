@@ -2,6 +2,9 @@ export default {
   state: () => ({
     sideIsOpen: false,
     cards: JSON.parse(localStorage.getItem("cards") || "[]"),
+    profile: {
+      isOpen: false,
+    },
   }),
 
   mutations: {
@@ -65,6 +68,10 @@ export default {
         console.log("Nothing here")
       }
     },
+
+    changeProfileStatus(state, bool) {
+      state.profile.isOpen = bool
+    }
   },
 
   actions: {},

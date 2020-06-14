@@ -54,28 +54,38 @@
         <button class="buttons__button buttons__btnOne">@</button>
         <button class="buttons__button buttons__btnTwo">@</button>
         <button class="buttons__button buttons__btnThree">@</button>
-        <button class="buttons__button buttons__btnFour">@</button>
+        <button
+          class="buttons__button buttons__btnFour"
+          @click.stop="openProfile"
+        >
+          P
+        </button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+import { mapMutations, mapState } from "vuex"
 export default {
   data: () => ({
     input: "",
   }),
 
+  computed: {
+    ...mapState({ isOpen: state => state.home.profile.isOpen }),
+  },
+
   methods: {
-    ...mapMutations({
-      filterCards: 'filterCards',
-      createCards: 'createCards'
-    }),
+    ...mapMutations(['filterCards', 'createCards', 'changeProfileStatus']), 
 
     searchHandler() {
       this.filterCards(this.input)
       this.input = ""
+    },
+
+    openProfile() {
+      this.changeProfileStatus(true)
     },
   },
 }

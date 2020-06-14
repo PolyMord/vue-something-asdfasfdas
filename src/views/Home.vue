@@ -1,5 +1,7 @@
 <template>
   <div class="home">
+    <Profile />
+    <Login />
     <div
       :class="sideIsOpen ? 'home__main-section--open' : ''"
       class="home__main-section"
@@ -18,6 +20,8 @@ import HeadBar from "@/components/home.page/HeadBar.vue"
 import Main from "@/components/home.page/Main.vue"
 import Sidebar from "@/components/home.page/Sidebar.vue"
 import FootBar from "@/components/home.page/FootBar.vue"
+import Profile from "@/components/home.page/Profile.vue"
+import Login from "@/components/home.page/Login.vue"
 import { mapState, mapMutations } from 'vuex'
 
 export default {
@@ -27,6 +31,8 @@ export default {
     Main,
     Sidebar,
     FootBar,
+    Profile,
+    Login
   },
 
   computed: {
