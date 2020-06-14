@@ -33,19 +33,19 @@
         </button>
         <button
           class="filters__button fillters__btnFour"
-          @click="filteredCard('one')"
+          @click="filterCards('one')"
         >
           one
         </button>
         <button
           class="filters__button fillters__btnFive"
-          @click="filteredCard('two')"
+          @click="filterCards('two')"
         >
           two
         </button>
         <button
           class="filters__button fillters__btnSix"
-          @click="filteredCard('three')"
+          @click="filterCards('three')"
         >
           three
         </button>
@@ -61,23 +61,21 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
 export default {
   data: () => ({
     input: "",
   }),
 
   methods: {
+    ...mapMutations({
+      filterCards: 'filterCards',
+      createCards: 'createCards'
+    }),
+
     searchHandler() {
-      this.$store.commit("filterCards", this.input)
+      this.filterCards(this.input)
       this.input = ""
-    },
-
-    filteredCard(title) {
-      this.$store.commit("filterCards", title)
-    },
-
-    createCards(count) {
-      return this.$store.commit("createCards", count)
     },
   },
 }

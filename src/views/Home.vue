@@ -18,6 +18,7 @@ import HeadBar from "@/components/home.page/HeadBar.vue"
 import Main from "@/components/home.page/Main.vue"
 import Sidebar from "@/components/home.page/Sidebar.vue"
 import FootBar from "@/components/home.page/FootBar.vue"
+import { mapState, mapMutations } from 'vuex'
 
 export default {
   name: "Home",
@@ -29,19 +30,14 @@ export default {
   },
 
   computed: {
-    sideIsOpen() {
-      return this.$store.state.sideIsOpen
-    },
+    ...mapState({
+      sideIsOpen: state => state.home.sideIsOpen
+    })
   },
 
   methods: {
-    openSide() {
-      return this.$store.commit("openSide")
-    },
+    ...mapMutations(['openSide'])
   },
-  mounted() {
-    // setInterval(() => this.openSide(), 1000)
-  }
 }
 </script>
 

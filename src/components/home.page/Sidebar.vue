@@ -41,11 +41,13 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   computed: {
-    sideIsOpen() {
-      return this.$store.state.sideIsOpen
-    }
+    ...mapState({
+      sideIsOpen: state => state.home.sideIsOpen
+    })
   },
 }
 </script>
