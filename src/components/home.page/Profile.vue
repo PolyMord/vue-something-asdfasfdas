@@ -9,10 +9,10 @@
   >
     <div class="profile__container">
       <h1 class="profile__head-one">
-        {{ inputOne ? inputOne : "Profile" }}
+        {{ inputOne || "Profile" }}
       </h1>
       <h2 class="profile__head-two">
-        {{ inputTwo ? inputTwo : "Something" }}
+        {{ inputTwo || "Something" }}
       </h2>
       <h3 class="profile__head-three">{{ headThree }}</h3>
       <form class="profile__form">
