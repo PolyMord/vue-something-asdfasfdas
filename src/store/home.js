@@ -5,6 +5,7 @@ export default {
     profile: {
       isOpen: false,
     },
+    isDarkTheme: false,
   }),
 
   mutations: {
@@ -71,6 +72,10 @@ export default {
 
     changeProfileStatus(state, bool) {
       state.profile.isOpen = bool
+    },
+
+    changeTheme(state) {
+      state.isDarkTheme = !state.isDarkTheme
     }
   },
 

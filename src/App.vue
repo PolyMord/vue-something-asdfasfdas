@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" :class="isDarkTheme ? 'dark' : ''">
     <component :is="layout">
       <router-view />
     </component>
@@ -9,13 +9,15 @@
 <script>
 import EmptyLayout from "@/layouts/empty.vue"
 import MainLayout from "@/layouts/main.vue"
+import { mapState } from "vuex"
 
 export default {
   components: {
     EmptyLayout,
-    MainLayout
+    MainLayout,
   },
   computed: {
+    ...mapState({ isDarkTheme: state => state.home.isDarkTheme }),
     layout() {
       return (this.$route.meta.layout || "main") + "-layout"
     },

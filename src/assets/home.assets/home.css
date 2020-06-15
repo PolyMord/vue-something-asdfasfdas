@@ -1,29 +1,14 @@
-:root {
-  --background: white;
-  --surface: black;
-  --primary: red;
-  --secondary: green;
-  --tertiary: grey;
-}
 
+
+/***********************[ HOME ]*************************/
 .home {
   display: flex;
   height: calc(100vh - 62px);
   box-sizing: border-box;
   position: relative;
 }
-.home__button {
-  position: fixed;
-  top: 62px;
-  right: 0;
-  width: 30px;
-  height: 30px;
-  border: none;
-  background-color: var(--surface);
-  color: var(--background);
-  outline: none;
-  z-index: 10;
-}
+
+/***********************[ HOME-MAIN ]*************************/
 .home__main-section {
   margin-top: 20px;
   margin-right: 50px;
@@ -38,6 +23,8 @@
   margin-right: 270px;
   transition: margin-right 500ms;
 }
+
+/***********************[ HOME-MAIN-HEAD ]*************************/
 .home__head {
   border: thin solid var(--surface);
   border-radius: 10px;
@@ -71,7 +58,7 @@
   height: 30px;
   width: 45px;
   outline: none;
-  font-size: .7rem;
+  font-size: 0.7rem;
 }
 .search__input {
   border: thin solid var(--surface);
@@ -100,7 +87,7 @@
   width: 30px;
   outline: none;
   padding: 0;
-  font-size: .7rem;
+  font-size: 0.7rem;
 }
 
 .home__buttons {
@@ -118,6 +105,7 @@
   outline: none;
 }
 
+/***********************[ HOME-MAIN-MAIN ]*************************/
 .home__main {
   border: thin solid var(--surface);
   border-radius: 10px;
@@ -129,6 +117,22 @@
   justify-content: center;
   flex-wrap: wrap;
   overflow-y: auto;
+}
+.home__main::-webkit-scrollbar-track {
+  margin: 10px 0;
+  border-radius: 15px;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: var(--tertiary);
+}
+.home__main::-webkit-scrollbar {
+  margin: 10px 0;
+  width: 10px;
+  background-color: none;
+}
+.home__main::-webkit-scrollbar-thumb {
+  border-radius: 15px;
+  background-color: var(--background);
+  border: 2px solid var(--surface);
 }
 .home__card {
   border: thin solid var(--surface);
@@ -168,6 +172,20 @@
   text-overflow: ellipsis;
   transition: height 200ms;
 }
+.home__content::-webkit-scrollbar-track {
+  border-radius: 15px;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: var(--tertiary);
+}
+.home__content::-webkit-scrollbar {
+  width: 8px;
+  background-color: none;
+}
+.home__content::-webkit-scrollbar-thumb {
+  border-radius: 15px;
+  background-color: var(--background);
+  border: 2px solid var(--surface);
+}
 .home__content:hover {
   overflow-y: scroll;
 }
@@ -186,6 +204,7 @@
   display: block;
 }
 
+/***********************[ HOME-MAIN-FOOT ]*************************/
 .home__foot {
   border: thin solid var(--surface);
   border-radius: 10px;
@@ -194,6 +213,8 @@
   align-items: center;
   justify-content: center;
 }
+
+/***********************[ HOME-SIDE ]*************************/
 .home__sidebar {
   border-left: thin solid var(--surface);
   position: fixed;
@@ -202,7 +223,73 @@
   top: 62px;
   bottom: 0;
   background-color: var(--primary);
+  box-shadow: 0 2px 10px 2px;
+  overflow-y: auto;
   transition: right 500ms;
+}
+.home__sidebar--open .sidebar__btn {
+  height: 30px;
+  background-color: var(--background);
+  transition: background 500ms;
+}
+.home__sidebar--open .sidebar__btn-text {
+  transform: rotate(0);
+}
+.home__sidebar::-webkit-scrollbar-track {
+  margin-top: 32px;
+  border-radius: 15px;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: var(--tertiary);
+}
+.home__sidebar::-webkit-scrollbar {
+  margin-top: 32px;
+  width: 10px;
+}
+.home__sidebar::-webkit-scrollbar-thumb {
+  border-radius: 15px;
+  background-color: var(--background);
+  border: 2px solid var(--surface);
+}
+.sidebar__header {
+  display: flex;
+  height: 30px;
+}
+.sidebar__btn {
+  border: none;
+  width: 30px;
+  height: 100vh;
+  background-color: var(--primary);
+  outline: none;
+  z-index: 10;
+  cursor: pointer;
+  transition: height 500ms, background 500ms;
+}
+.sidebar__btn-text{
+  transform: rotate(90deg);
+}
+.sidebar__head {
+  margin: 0;
+  flex-grow: 1;
+  line-height: 30px;
+  text-align: center;
+}
+.sidebar__content {
+  border-top: thin solid var(--surface);
+  border-bottom: thin solid var(--surface);
+  background-color: var(--background);
+}
+.sidebar__tweets {
+  border: thin solid var(--surface);
+  background-color: var(--secondary);
+  margin: 10px;
+  padding: 10px;
+}
+.sidebar__tweets p {
+  background-color: var(--tertiary);
+  border: thin solid var(--surface);
+}
+.sidebar__name {
+  margin: 0;
 }
 .home__sidebar .sidebar__content {
   opacity: 0;
@@ -217,6 +304,7 @@
   transition: opacity 500ms;
 }
 
+/***********************[ HOME-PROFILE ]*************************/
 .profile {
   position: absolute;
   top: 0;
@@ -226,7 +314,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, .8);
+  background-color: rgba(0, 0, 0, 0.8);
   transition: right 500ms;
 }
 .profile--sideOpen {

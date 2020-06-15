@@ -2,8 +2,26 @@
   --background: white;
   --surface: black;
   --primary: red;
+  --primary-dark: darkred;
   --secondary: green;
+  --secondary-dark: darkgreen;
   --tertiary: grey;
+}
+
+/********* [ !!!! ] *********/
+* {
+  transition: background 500ms;
+}
+/********* /[ !!!! ] *********/
+
+.dark {
+  --background: #121212;
+  --surface: darkgray;
+  --primary: #bb86fc;
+  --primary-dark: #3700b3;
+  --secondary: #03dac6;
+  --secondary-dark: #018786;
+  --tertiary: orange;
 }
 
 .header {

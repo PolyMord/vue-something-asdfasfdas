@@ -10,14 +10,14 @@
     </div>
     <div class="nav">
       <router-link to="/">Home</router-link>
-      <router-link to="/clicker">Clicker</router-link>
       <router-link to="/typer">Typer</router-link>
+      <router-link to="/clicker">Clicker</router-link>
       <router-link to="/landing">Landing</router-link>
     </div>
     <div class="theme">
-      <button class="theme__button">Dark</button>
+      <button class="theme__button" @click.stop="changeTheme">Dark</button>
       <div class="theme__img">
-        <img :src="toDark" alt="" />
+        <img :src="isDarkTheme ? toDark : toLight" alt="" />
       </div>
     </div>
   </div>
@@ -27,6 +27,7 @@
 import logo from "@/assets/home.assets/logo.png"
 import toDark from "@/assets/home.assets/toDark.png"
 import toLight from "@/assets/home.assets/toLight.png"
+import { mapState, mapMutations } from "vuex"
 
 export default {
   data: () => ({
@@ -34,5 +35,13 @@ export default {
     toDark,
     toLight,
   }),
+
+  computed: {
+    ...mapState({ isDarkTheme: state => state.home.isDarkTheme }),
+  },
+
+  methods: {
+    ...mapMutations(["changeTheme"]),
+  },
 }
 </script>
