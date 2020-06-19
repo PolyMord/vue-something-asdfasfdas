@@ -1,98 +1,217 @@
 <template>
   <div class="typer">
     <h1>This is a typer page</h1>
-    <div class="content">
-      <div class="stats">
-        <span>Score: {{ score }}</span>
-        <span>Time: </span>
+    <div v-if="play" class="content">
+      <div>
+        <span>Time: {{ time }}</span>
       </div>
-      <p class="text">
-        <span style="background: green; color: white;">{{ typedWords.join(' ') }}</span>
-        <span style="background: yellow; color: black;">{{ currentWord }}</span>
-        <span>{{ untypedWords.join(' ')}}</span>
-      </p>
+      <div class="text" :class="starting ? 'text--starting' : ''">
+        <div>
+          <span class="typedText">{{ typedText.join(" ") }}</span
+          >&nbsp;
+          <span class="inputWord">{{ inputWord.join("") }}</span>
+          <span v-if="error.length" class="error">{{ error.join("") }}</span>
+          <span class="untypedWord">{{ untypedWord.join("") }}</span>
+          <span class="untypedText"> {{ untypedText.join(" ") }}</span>
+        </div>
+      </div>
       <input
+        ref="input"
         type="text"
         class="input"
+        :class="[
+          starting ? 'input--starting' : '',
+          error.length ? 'input--error' : '',
+        ]"
         v-model="input"
-        @keyup.stop="generalKeys"
-        @input.stop="matchWord"
+        @keydown="match"
+        readonly
       />
+    </div>
+    <div v-else>
       <div class="end">
-        <span>
-          <strong>WPM: </strong>
-        </span>
-        <span>
-          <strong>CPM: </strong>
-        </span>
+        <div class="stats">
+          <span>
+            <strong>Time: {{ time }}s</strong>
+          </span>
+          <span>
+            <strong>WPM: {{ WPM }}</strong>
+          </span>
+          <span>
+            <strong>CPM: {{ CPM }}</strong>
+          </span>
+        </div>
+        <button class="btn-start" @click.stop="start">Start</button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+/**
+ * - Верстка
+ * - Считаются ли пробелы за слова?
+ * - Доработка подсчета WPM/CPM
+ * - Рефакторинг
+ */
+
+
 export default {
   name: "Typer",
 
   data: () => ({
-    text: "lorem ipsum dolor sit amet eat play game work elit",
+    allTexts: [
+      `Which was increased by the two guardsmen, who took sides with one of the loungers.`,
+      `As he spoke the gleam of the sidelights of a carriage came round the curve of the avenue.`,
+      `It was a smart little landau which rattled up to the door of Briony Lodge.`,
+      `As it pulled up, one of the loafing men at the corner dashed forward to open the door.`,
+      `In the hope of earning a copper, but was elbowed away by another loafer.`,
+      `Who had rushed up with the same intention. A fierce quarrel broke out.`,
+    ],
+    text: [],
     input: "",
-    allWords: [],
-    untypedWords: [],
-    typedWords: [],
-    currentWord: "",
+    currentWord: [],
+    typedWord: [],
+    untypedWord: [],
+    inputWord: [],
+    error: [],
     idx: 0,
-    charIdx: 0,
-    score: 0,
+    typedText: [],
+    untypedText: [],
+    play: false,
+    time: 0,
+    timer: null,
+    WPM: 0,
+    CPM: 0,
+    starting: false,
   }),
 
   methods: {
-    takeWord(idx) {
-      this.untypedWords.shift()
-      this.currentWord = this.allWords[idx]
-    },
+    match() {
+      const charList = `abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789,.?:;'" `
+      const key = event.key
 
-    matchWord(e) {
-      if (this.currentWord) {
-        const word = this.currentWord.split("")
-        if (e.target.value[this.charIdx] === word[this.charIdx]) {
-          console.log(word[this.charIdx])
-          this.charIdx++
-        }
+      if (
+        key === " " &&
+        this.inputWord.length === this.currentWord.length &&
+        !this.error.length
+      ) {
+        this.next()
+      } else if (event.ctrlKey && key === "Backspace") {
+        event.preventDefault()
+      } else if (key === "Backspace") {
+        this.isBackspace()
+      } else if (charList.indexOf(key) !== -1) {
+        this.isCorrect(key)
       }
     },
 
-    generalKeys(e) {
-      if (e.key === " ") {
-        if (this.input.trim() === this.currentWord) {
-          this.input = ""
-          this.score++
-          this.charIdx = 0
-          this.typedWords.push(this.allWords[this.idx])
-          this.idx++
-          this.takeWord(this.idx)
-          console.log("норм")
+    isCorrect(key) {
+      if (key === this.currentWord[this.idx] && !this.error.length) {
+        this.inputWord.push(this.untypedWord.shift())
+        this.idx++
+
+        if (this.inputWord.length === this.currentWord.length) {
+          if (this.typedText.length + 1 === this.text.length) {
+            this.end()
+          }
+        }
+      } else {
+        if (this.input.length >= this.currentWord.length) {
+          this.error.push(key)
         } else {
-          console.log("ошибка")
+          this.error.push(this.untypedWord.shift())
+          this.idx++
         }
-        if (this.allWords.length === this.idx) console.log("конец")
       }
+    },
+
+    isBackspace() {
+      if (!this.idx && !this.inputWord.length) {
+        this.untypedWord = [...this.currentWord]
+      } else if (!this.error.length) {
+        this.untypedWord.unshift(this.inputWord.pop())
+        this.idx--
+      } else if (this.error.length) {
+        if (this.input.length > this.currentWord.length) {
+          this.error.pop()
+        } else {
+          this.untypedWord.unshift(this.error.pop())
+          this.idx--
+        }
+      }
+    },
+
+    next() {
+      this.typedText.push(this.currentWord)
+      this.currentWord = this.untypedText.shift()
+      this.untypedWord = [...this.currentWord]
+      this.inputWord = []
+      this.idx = 0
+      setTimeout(() => (this.input = "")) // нужно для избавления от пробела
+    },
+
+    rand() {
+      return this.allTexts[Math.floor(Math.random() * this.allTexts.length)]
     },
 
     init() {
-      this.allWords = this.text.split(" ")
-      this.untypedWords = [...this.allWords]
-      this.takeWord(this.idx)
+      this.text = this.rand().split(" ")
+      this.untypedText = [...this.text]
+      this.currentWord = this.untypedText.shift()
+      this.untypedWord = [...this.currentWord]
     },
-  },
 
-  mounted() {
-    this.init()
+    start() {
+      this.untypedText = []
+      this.currentWord = []
+      this.untypedWord = []
+      this.typedWord = []
+      this.inputWord = []
+      this.typedText = []
+      this.error = []
+      this.play = true
+      this.input = ""
+      this.time = 0
+      this.idx = 0
+      this.init()
+      this.starting = true
+      setTimeout(() => {
+        this.timer = setInterval(() => this.time++, 1000)
+        this.$refs.input.readOnly = false
+        this.$refs.input.select()
+        this.starting = false
+      }, 2000)
+    },
+
+    end() {
+      this.play = false
+      clearInterval(this.timer)
+      this.CPM = this.text.length * 5 * Math.floor(60 / this.time)
+      this.WPM = this.text.length * Math.floor(60 / this.time)
+    },
   },
 }
 </script>
 
 <style scoped>
+.typedText {
+  color: #99cc00;
+}
+.typedWord {
+  color: green;
+}
+.inputWord {
+  color: #99cc00;
+}
+.error {
+  background-color: red;
+  color: white;
+}
+.untypedWord {
+  text-decoration: underline;
+}
+
 .typer {
   display: flex;
   flex-direction: column;
@@ -108,6 +227,7 @@ export default {
   border-radius: 10px;
 }
 .text {
+  margin: 10px 0;
   white-space: wrap;
   padding: 10px;
   flex-grow: 1;
@@ -116,6 +236,12 @@ export default {
   align-items: center;
   border: thin solid black;
   border-radius: 10px;
+  background: white;
+  user-select: none;
+  font-size: 1.2rem;
+}
+.text--starting {
+  background: grey;
 }
 .input {
   box-sizing: border-box;
@@ -124,11 +250,38 @@ export default {
   outline: none;
   border: thin solid black;
   border-radius: 10px;
+  background: white;
+  color: black;
 }
-.stats,
+.input--error {
+  background: red;
+  color: white;
+}
+.input--starting {
+  background: grey;
+}
 .end {
-  margin-top: 10px;
+  border: thin solid;
+  border-radius: 10px;
+  width: 300px;
+  height: 250px;
+  padding: 20px;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+}
+.stats {
+  border: thin solid;
+  border-radius: 10px;
+  padding: 10px;
+  flex-grow: 1;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+}
+.btn-start {
+  margin-top: 10px;
+  border: thin solid;
+  border-radius: 10px;
+  height: 30px;
 }
 </style>
