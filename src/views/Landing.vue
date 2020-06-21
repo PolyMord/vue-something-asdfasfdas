@@ -1,7 +1,9 @@
 <template>
-  <div class="landing">
+  <div class="land">
+    <Second />
+     <Third />
     <First />
-    <div class="container">
+    <!-- <div class="land__container">
       <p data-aos="fade-up">
         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Excepturi
         asperiores esse ullam at vero sit illo. Modi, dolores. Atque
@@ -60,7 +62,7 @@
         iure eaque ipsa?
       </p>
 
-      <div class="lorem">
+      <div class="land__lorem">
         <span v-for="s of typedText(this.text, 50)" :key="s.delay">
           <span
             data-aos-offset="50"
@@ -71,9 +73,7 @@
           >
         </span>
       </div>
-    </div>
-    <Second />
-    <Third />
+    </div> -->
   </div>
 </template>
 
@@ -116,16 +116,5 @@ export default {
 }
 </script>
 
-<style scoped>
-.container {
-  margin: 0 35vw;
-}
-.container p {
-  text-align: start;
-  text-indent: 1rem;
-}
-.lorem {
-  display: inline-block;
-  font-size: 2rem;
-}
+<style src="../assets/landing.assets/landing.css">
 </style>

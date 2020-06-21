@@ -1,3 +1,311 @@
+/* // Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) { ... }
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) { ... }
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) { ... }
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) { ... } */
+
+
+:root {
+  --small: 576px;
+  --medium: 768px;
+  --large: 992px;
+  --extra: 1200px;
+}
+
+/*************************** [MEDIA] *****************************/
+
+@media screen and (max-width: 576px) {
+  .L-content__card {
+    box-sizing: border-box;
+    border: thin solid;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 80px;
+    max-width: 1000px;
+  }
+}
+@media screen and (min-width: 577px) {
+  .L-content__card {
+    border: thin solid;
+    display: flex;
+    flex-direction: column;
+    margin-left: 5vw;
+    margin-right: 5vw;
+    margin-bottom: 80px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .L-content__card {
+    height: 250px;
+    flex-direction: row;
+  }
+}
+@media screen and (min-width: 992px) {
+  .L-content__card {
+    width: 80vw;
+    max-width: 1000px;
+  }
+  .L-content__second-card {
+    align-self: flex-end;
+  }
+}
+@media screen and (min-width: 1200px) {
+}
+@media screen and (min-width: 1200px) {
+  .L-content__card {
+    height: 300px;
+  }
+}
+
+/*************************** [/MEDIA] *****************************/
+/*************************** [LAND] *****************************/
+
+.land {
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+.land__container {
+  margin: 0 35vw;
+}
+.land__container p {
+  text-align: start;
+  text-indent: 1rem;
+}
+.land__lorem {
+  display: inline-block;
+  font-size: 2rem;
+}
+
+/*************************** [FIRST] *****************************/
+.land__first {
+  height: 100vh;
+}
+
+.first__text {
+  border: thin solid black;
+}
+.first__text p {
+  width: 50%;
+  text-align: start;
+  text-indent: 1rem;
+}
+
+.first__img {
+  border: thin solid black;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.first__type-text {
+  border: thin solid black;
+  height: 16vh;
+}
+
+.first__head {
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.first__head__wrap {
+  margin: 0;
+  position: relative;
+  height: 3rem;
+  width: 35vw;
+}
+.first__head__item {
+  position: absolute;
+  white-space: nowrap;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  animation: noise-shift 4s linear infinite alternate-reverse;
+}
+
+/*************************** [/FIRST] *****************************/
+/*************************** [SECOND] *****************************/
+.L-second__header {
+  border: thin solid;
+  width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.L-header__container {
+  margin-top: 150px;
+  margin-bottom: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80vw;
+}
+.L-header__logo {
+  margin-bottom: 100px;
+}
+.L-header__the-next {
+  color: white;
+  font-size: 5rem;
+}
+.L-header__big-thing {
+  color: white;
+  font-size: 5rem;
+}
+.L-header__small-text {
+  color: grey;
+  width: fit-content;
+  box-sizing: border-box;
+  border: thin solid;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.9);
+}
+.L-second__email {
+  width: 100%;
+  height: 160px;
+  display: flex;
+  background: rgba(31, 32, 54, 1);
+}
+.L-email__container {
+  margin: 40px auto;
+  display: flex;
+  width: 80vw;
+}
+.L-email__left-text {
+  flex-grow: 1;
+}
+.L-email__big-text {
+  color: white;
+  font-size: 1.5rem;
+}
+.L-email__small-text {
+  color: darkgrey;
+  font-size: 0.8rem;
+}
+.L-email__form {
+  display: flex;
+  margin-left: 50px;
+  flex-basis: 50%;
+  padding: 10px;
+}
+.L-email__inputfield {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-end;
+}
+.L-email__label {
+  color: red;
+  font-size: 0.7rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.L-email__input {
+  box-sizing: border-box;
+  max-width: 500px;
+  width: 35vw;
+  height: 40px;
+  padding-left: 5px;
+  font-size: 1rem;
+  outline: none;
+}
+.L-email__submit-btn {
+  align-self: flex-end;
+  border: none;
+  height: 40px;
+  width: 150px;
+  background: red;
+  color: white;
+  font-size: 0.8rem;
+  font-weight: bold;
+  cursor: pointer;
+  outline: none;
+  transition: background 100ms;
+}
+.L-email__submit-btn:hover {
+  background: darkred;
+}
+/*************************** [/SECOND] *****************************/
+/*************************** [THIRD] *****************************/
+
+.L-third__content {
+  border: thin solid;
+  display: flex;
+  flex-direction: column;
+}
+.L-content__why-text {
+  margin: 80px auto;
+  font-size: 1.3rem;
+  color: #1f2e3c;
+}
+.L-content__card {
+}
+.L-content__card img {
+  flex-basis: 50%;
+}
+.L-content__card-text {
+  background: rgba(31, 32, 54, 1);
+  padding: 10px;
+  flex-basis: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.L-content__card-text span {
+  font-size: .8rem;
+  color: grey;
+}
+.L-content__card-text div {
+  font-size: .8rem;
+  color: grey;
+}
+.L-content__card-text h4 {
+  color: white;
+}
+.L-content__card-text p {
+  color: white;
+  font-size: .9rem;
+}
+
+.L-third__footer {
+  border: thin solid;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(31, 32, 54, 1);
+}
+.L-footer__left-text {
+  margin-left: 10vw;
+}
+.L-footer__left-text img {
+  height: 12px;
+}
+.L-footer__left-text span {
+  margin-left: 10px;
+  font-size: 0.8rem;
+  color: grey;
+}
+.L-footer__right-text {
+  margin-right: 10vw;
+}
+.L-footer__right-text span {
+  margin-right: 10px;
+  font-size: 0.8rem;
+  color: grey;
+}
+.L-footer__right-text a {
+  font-size: 0.8rem;
+  text-decoration: none;
+  color: red;
+}
+
+/*************************** [/THIRD] *****************************/
+/*************************** [/LAND] *****************************/
+
+/*************************** [KEYFRAMES] *****************************/
 @keyframes noise-shift {
   0% {
     -webkit-transform: translate3d(-12px, 2px, 0);
@@ -123,3 +431,4 @@
     transform: translate3d(11px, -2px, 0);
   }
 }
+/*************************** [/KEYFRAMES] *****************************/

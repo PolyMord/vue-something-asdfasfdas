@@ -1,6 +1,6 @@
 <template>
   <div
-    @click="closeProfile"
+    @click.self="closeProfile"
     class="profile"
     :class="[
       sideIsOpen ? 'profile--sideOpen ' : '',
@@ -69,11 +69,12 @@ export default {
       return (this.headThree = this.inputOne + " " + this.inputTwo)
     },
 
-    closeProfile(event) {
-      if (event.target === event.currentTarget) {
-        const result = confirm("Are you sure?")
-        result ? this.changeProfileStatus(false) : result
-      }
+    closeProfile() {
+      const result = confirm("Are you sure?")
+      result ? this.changeProfileStatus(false) : result
+      // if (event.target === event.currentTarget) {
+
+      // }
     },
   },
 }
